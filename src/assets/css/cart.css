@@ -1,0 +1,14 @@
+.cartTit{
+  height: 1rem;
+  text-align: center;
+  margin-top: .3rem;
+  font-size: .6rem;
+  font-weight: 700;
+}
+.goods-card {
+  margin: 0;
+  background-color: white;
+}
+.delete-button {
+  height: 100%;
+}
