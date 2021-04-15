@@ -5,10 +5,7 @@
     </div>
     <div v-if="isKon">
       <div class="xCart" v-for="(item, index) in caiList" :key="index">
-        <img
-          src="https://dss2.bdstatic.com/6Ot1bjeh1BF3odCf/it/u=1779210353,712713214&fm=218&app=92&f=JPEG?w=121&h=75&s=DC202ED544557DD250AE347C0300D03B"
-          alt=""
-        />
+        <img :src="item.img" alt="" />
         <div class="xcName">{{ item.name }}</div>
         <div class="xcIng">{{ item.ingredients }}</div>
         <div class="xNum">数量：{{ item.sales }}</div>
