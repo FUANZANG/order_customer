@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 const Home = () => import('../views/home/Home')
 const Cart = () => import('../views/cart/Cart')
+const childCart = () => import('../views/cart/childComp/childCart')
 const Order = () => import('../views/order/Order')
 
 Vue.use(VueRouter)
@@ -15,19 +16,39 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/home',
+    // 这个属性为true的页面才显示tabbar
+    meta: {
+      showTab: true
+    }
   },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    meta: {
+      showTab: true
+    }
   },
   {
     path: '/Cart',
-    component: Cart
+    component: Cart,
+    meta: {
+      showTab: true
+    }
   },
   {
     path: '/Order',
-    component: Order
+    component: Order,
+    meta: {
+      showTab: true
+    }
+  },
+  {
+    path: '/childCart',
+    component: childCart,
+    meta: {
+      showTab: false
+    }
   }
 ]
 

@@ -16,7 +16,7 @@ strong {
 }
 .van-sidebar-item--select::before{
   height: 49px;
-  background-color:firebrick;
+  background-color:#52a5c5;
 }
 .swipe {
   margin-top: 0.5rem;
@@ -30,6 +30,9 @@ strong {
 }
 .active {
   display: none;
+}
+.van-sidebar{
+  height: 22.2rem
 }
 .ac {
   text-align: left;
@@ -78,7 +81,10 @@ strong {
   left: 7.5rem;
   top: 0.65rem;
 }
-.caiRight button {
+.caiRight:active{
+  transform: translate(0.05rem,0.05rem);
+}
+.caiRight img {
   border-radius: 1.2em;
   height: 1rem;
   width: 1rem;
@@ -155,7 +161,7 @@ font-weight: 700;
   left: 0.7rem;
   top: 5rem
 }
-.van-button{
+.jrgwc {
   top: 9.5rem;
   height: 1.2rem;
 }
