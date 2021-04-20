@@ -91,6 +91,16 @@ const store = new Vuex.Store({
   actions: {},
   getters: {
     // 获取商品总价
+    // totalPrice(state) {
+    //   let totalPrice = 0.00;
+    //   state.cart.some((item) => {
+    //     if (item.checked == true) {
+    //       totalPrice += item.count * item.price
+    //     }
+    //   })
+
+    //   return state.price = totalPrice + '.00'
+    // }
     // totalPrice: state => {
     // let totalPrice = 0;
     //   state.cart.forEach((item) => {
