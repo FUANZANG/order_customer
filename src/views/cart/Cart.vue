@@ -1,9 +1,15 @@
 <template>
   <div>
     <div class="cartTit">购物车</div>
-    <div v-if="isKon">
+    <div v-if="isKon" style="height: 17rem; overflow: auto">
       <van-swipe-cell v-for="(item, index) in caiList" :key="index">
-        <van-checkbox v-model="checked" shape="square"></van-checkbox>
+        <van-checkbox-group v-model="result">
+          <van-checkbox
+            shape="square"
+            :name="item.id"
+            @click="cartCheck(item)"
+          ></van-checkbox>
+        </van-checkbox-group>
         <van-card
           :price="item.price"
           :desc="item.ingredients"
@@ -12,20 +18,27 @@
           :thumb="item.img"
         />
         <template #right>
-          <van-button square text="删除" type="danger" class="delete-button" />
+          <van-button
+            square
+            text="删除"
+            type="danger"
+            class="delete-button"
+            @click="deleteCai(item)"
+          />
         </template>
         <div class="adds">
           <van-stepper
-            v-model="value"
+            v-model="item.count"
             theme="round"
             button-size="22"
             disable-input
+            @plus="countAdd(item)"
+            @minus="countCre(item)"
           />
         </div>
       </van-swipe-cell>
       <div class="jieSuan">
-        <div class="jSleft">合计：<i>￥</i></div>
-
+        <div class="jSleft">合计：<i>￥</i>{{ this.$store.state.price }}</div>
         <div class="jSright" @click="cartClick">去结算</div>
       </div>
     </div>
@@ -41,36 +54,62 @@ export default {
   name: "Cart",
   data() {
     return {
-      checked: true,
       isKon: false,
       value: 1,
-      caiList: [
-        {
-          id: 1,
-          img: "/img/laziji.465cab2b.png",
-          name: "干煸牛蛙",
-          ingredients: "干辣椒 鸡腿肉",
-          sales: "6",
-          price: "38.00",
-          jianJie: "这是一个干煸牛蛙 主要配料是干辣椒 青蛙头",
-          shuoMing:
-            "牛蛙去皮去内脏剪去指甲,一定要去除背上的中骨,剪成块状；蒜和香菜除外的蔬菜切成片,油锅炸8分熟；牛蛙用姜片绍酒盐腌制20分钟后拍上面粉油锅炸九分熟。",
-        },
-      ],
+      caiList: [],
+      result: [],
+      // sumprice: null, // this.totalPrice
     };
   },
   methods: {
     cartClick() {
-      this.$router.push("/childCart");
+      const checkee = this.$store.state.cart.every((item) => {
+        return item.checked == false;
+      });
+      if (checkee) {
+        this.$toast("您还未选择菜品呢~");
+      } else {
+        this.$router.push("/childCart");
+      }
+    },
+    countAdd(item) {
+      // console.log(item.id);
+      this.$store.commit("countAdd", item.id);
+    },
+    countCre(item) {
+      // console.log("jianshao");
+      this.$store.commit("countCre", item.id);
+    },
+    cartCheck(item) {
+      this.$store.commit("cartCheck", item.id);
+    },
+    deleteCai(item) {
+      this.$store.commit("deleteCai", item.id);
+      if (this.caiList.length !== 0) {
+        this.isKon = true;
+      } else {
+        this.isKon = false;
+      }
     },
   },
   created() {
+    this.caiList = this.$store.state.cart;
+    // this.caiList = JSON.parse(localStorage.getItem("cart"));
+    // console.log(JSON.parse(localStorage.getItem("cart")));
+    // console.log(this.caiList);
     if (this.caiList.length !== 0) {
       this.isKon = true;
     } else {
       this.isKon = false;
     }
+    // 菜品默认选中
+    this.caiList.forEach((item) => {
+      if (item.checked == true) {
+        this.result.push(item.id);
+      }
+    });
   },
+
   // destroyed() {
   //   console.log("cart首页 被销毁");
   // },

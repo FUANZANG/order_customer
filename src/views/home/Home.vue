@@ -23,17 +23,6 @@
         <van-sidebar-item title="内有玄鸡" />
         <van-sidebar-item title="必点配菜" />
         <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
-        <van-sidebar-item title="特色川菜" />
         <van-sidebar-item title="" />
       </van-sidebar>
       <!-- 右侧详情 -->
@@ -51,79 +40,9 @@
               <span class="price">￥{{ item.price }}</span>
             </div>
           </div>
-          <div class="caiRight"><img src="~assets/img/add.png" alt="" /></div>
-        </div>
-        <div class="kong">再怎么滑动也没有了，到底啦~</div>
-      </div>
-      <div class="ac" v-show="currentIndex == 1">
-        <span class="title">招牌牛蛙</span>
-        <div class="cai" v-for="(item, index) in caiList" :key="index">
-          <div class="caiLeft" @click="xiangQingClick(item)">
-            <img :src="item.img" alt="" />
+          <div class="caiRight" @click="addToShopCar(item)">
+            <img src="~assets/img/add.png" alt="" />
           </div>
-          <div class="caiCenter" @click="xiangQingClick(item)">
-            <strong>{{ item.name }}</strong>
-            <span class="caiShuoming">{{ item.ingredients }}</span>
-            <div>
-              <span>销量：{{ item.sales }}</span>
-              <span class="price">￥{{ item.price }}</span>
-            </div>
-          </div>
-          <div class="caiRight"><img src="~assets/img/add.png" alt="" /></div>
-        </div>
-        <div class="kong">再怎么滑动也没有了，到底啦~</div>
-      </div>
-      <div class="ac" v-show="currentIndex == 2">
-        <span class="title">招牌牛蛙</span>
-        <div class="cai" v-for="(item, index) in caiList" :key="index">
-          <div class="caiLeft" @click="xiangQingClick(item)">
-            <img :src="item.img" alt="" />
-          </div>
-          <div class="caiCenter" @click="xiangQingClick(item)">
-            <strong>{{ item.name }}</strong>
-            <span class="caiShuoming">{{ item.ingredients }}</span>
-            <div>
-              <span>销量：{{ item.sales }}</span>
-              <span class="price">￥{{ item.price }}</span>
-            </div>
-          </div>
-          <div class="caiRight"><img src="~assets/img/add.png" alt="" /></div>
-        </div>
-        <div class="kong">再怎么滑动也没有了，到底啦~</div>
-      </div>
-      <div class="ac" v-show="currentIndex == 3">
-        <span class="title">招牌牛蛙</span>
-        <div class="cai" v-for="(item, index) in caiList" :key="index">
-          <div class="caiLeft" @click="xiangQingClick(item)">
-            <img :src="item.img" alt="" />
-          </div>
-          <div class="caiCenter" @click="xiangQingClick(item)">
-            <strong>{{ item.name }}</strong>
-            <span class="caiShuoming">{{ item.ingredients }}</span>
-            <div>
-              <span>销量：{{ item.sales }}</span>
-              <span class="price">￥{{ item.price }}</span>
-            </div>
-          </div>
-          <div class="caiRight"><img src="~assets/img/add.png" alt="" /></div>
-        </div>
-        <div class="kong">再怎么滑动也没有了，到底啦~</div>
-      </div>
-      <div class="ac" v-show="currentIndex == 4">
-        <span class="title">招牌牛蛙</span>
-        <div class="cai" v-for="(item, index) in caiList" :key="index">
-          <div class="caiLeft" @click="xiangQingClick(item)">
-            <img :src="item.img" alt="" />
-          </div>
-          <div class="caiCenter" @click="xiangQingClick(item)">
-            <strong>{{ item.name }}</strong>
-            <span class="caiShuoming">{{ item.ingredients }}</span>
-            <div>
-              <span>销量：{{ item.sales }}</span>
-              <span class="price">￥{{ item.price }}</span>
-            </div>
-          </div>
-          <div class="caiRight"><img src="~assets/img/add.png" alt="" /></div>
         </div>
         <div class="kong">再怎么滑动也没有了，到底啦~</div>
       </div>
@@ -148,6 +67,7 @@
           size="large"
           color="firebrick"
           class="jrgwc"
+          @click="addShopCar"
           >加入购物车</van-button
         >
       </div>
@@ -169,91 +89,100 @@ export default {
       xqContent: "",
       xqShuoming: "",
       xqImg: "",
+      xqAddCart: {},
       caiList: [
         {
           id: 1,
-          img: "/img/laziji.465cab2b.png",
+          img:
+            "https://img0.baidu.com/it/u=1580567929,1252970303&fm=26&fmt=auto&gp=0.jpg",
           name: "干煸牛蛙",
           ingredients: "干辣椒 鸡腿肉",
           sales: "6",
-          price: "38",
+          price: "38.00",
           jianJie: "主要配料是干辣椒 青蛙头",
           shuoMing:
             "牛蛙去皮去内脏剪去指甲,一定要去除背上的中骨,剪成块状；蒜和香菜除外的蔬菜切成片,油锅炸8分熟；牛蛙用姜片绍酒盐腌制20分钟后拍上面粉油锅炸九分熟。",
         },
         {
           id: 2,
-          img: "/img/laziji.465cab2b.png",
+          img:
+            "https://img0.baidu.com/it/u=1580567929,1252970303&fm=26&fmt=auto&gp=0.jpg",
           name: "清蒸牛蛙",
           ingredients: "干辣椒 鸡腿肉",
           sales: "5",
-          price: "40",
+          price: "40.00",
           jianJie: "主要配料是干辣椒 青蛙头",
           shuoMing:
             "牛蛙去皮去内脏剪去指甲,一定要去除背上的中骨,剪成块状；蒜和香菜除外的蔬菜切成片,油锅炸8分熟；牛蛙用姜片绍酒盐腌制20分钟后拍上面粉油锅炸九分熟。",
         },
         {
           id: 3,
-          img: "/img/laziji.465cab2b.png",
+          img:
+            "https://img0.baidu.com/it/u=1580567929,1252970303&fm=26&fmt=auto&gp=0.jpg",
           name: "爆炒牛蛙",
           ingredients: "干辣椒 鸡腿肉",
           sales: "7",
-          price: "39",
+          price: "39.00",
           jianJie: "主要配料是干辣椒 青蛙头",
           shuoMing:
             "牛蛙去皮去内脏剪去指甲,一定要去除背上的中骨,剪成块状；蒜和香菜除外的蔬菜切成片,油锅炸8分熟；牛蛙用姜片绍酒盐腌制20分钟后拍上面粉油锅炸九分熟。",
         },
         {
-          id: 3,
-          img: "/img/laziji.465cab2b.png",
+          id: 4,
+          img:
+            "https://img0.baidu.com/it/u=1580567929,1252970303&fm=26&fmt=auto&gp=0.jpg",
           name: "油炸牛蛙",
           ingredients: "干辣椒 鸡腿肉",
           sales: "7",
-          price: "39",
+          price: "39.00",
           jianJie: "主要配料是干辣椒 青蛙头",
           shuoMing:
             "牛蛙去皮去内脏剪去指甲,一定要去除背上的中骨,剪成块状；蒜和香菜除外的蔬菜切成片,油锅炸8分熟；牛蛙用姜片绍酒盐腌制20分钟后拍上面粉油锅炸九分熟。",
         },
         {
-          id: 3,
-          img: "/img/laziji.465cab2b.png",
+          id: 5,
+          img:
+            "https://img0.baidu.com/it/u=1580567929,1252970303&fm=26&fmt=auto&gp=0.jpg",
           name: "红烧牛蛙",
           ingredients: "干辣椒 鸡腿肉",
           sales: "7",
-          price: "39",
+          price: "39.00",
           jianJie: "主要配料是干辣椒 青蛙头",
           shuoMing:
             "牛蛙去皮去内脏剪去指甲,一定要去除背上的中骨,剪成块状；蒜和香菜除外的蔬菜切成片,油锅炸8分熟；牛蛙用姜片绍酒盐腌制20分钟后拍上面粉油锅炸九分熟。",
         },
         {
-          id: 3,
-          img: "/img/laziji.465cab2b.png",
-          name: "爆炒牛蛙",
+          id: 6,
+          img:
+            "https://img0.baidu.com/it/u=1580567929,1252970303&fm=26&fmt=auto&gp=0.jpg",
+          name: "焖牛蛙腿",
           ingredients: "干辣椒 鸡腿肉",
           sales: "7",
-          price: "39",
+          price: "39.00",
           jianJie: "主要配料是干辣椒 青蛙头",
           shuoMing:
             "牛蛙去皮去内脏剪去指甲,一定要去除背上的中骨,剪成块状；蒜和香菜除外的蔬菜切成片,油锅炸8分熟；牛蛙用姜片绍酒盐腌制20分钟后拍上面粉油锅炸九分熟。",
         },
         {
-          id: 3,
-          img: "/img/laziji.465cab2b.png",
-          name: "爆炒牛蛙",
+          id: 7,
+          img:
+            "https://img0.baidu.com/it/u=1580567929,1252970303&fm=26&fmt=auto&gp=0.jpg",
+          name: "溜牛蛙头",
           ingredients: "干辣椒 鸡腿肉",
           sales: "7",
-          price: "39",
+          price: "39.00",
           jianJie: "主要配料是干辣椒 青蛙头",
           shuoMing:
             "牛蛙去皮去内脏剪去指甲,一定要去除背上的中骨,剪成块状；蒜和香菜除外的蔬菜切成片,油锅炸8分熟；牛蛙用姜片绍酒盐腌制20分钟后拍上面粉油锅炸九分熟。",
         },
         {
-          id: 3,
-          img: "/img/laziji.465cab2b.png",
-          name: "爆炒牛蛙",
+          id: 8,
+          img:
+            "https://img0.baidu.com/it/u=1580567929,1252970303&fm=26&fmt=auto&gp=0.jpg",
+          name: "生牛蛙",
           ingredients: "干辣椒 鸡腿肉",
           sales: "7",
-          price: "39",
+          price: "39.00",
           jianJie: "主要配料是干辣椒 青蛙头",
           shuoMing:
             "牛蛙去皮去内脏剪去指甲,一定要去除背上的中骨,剪成块状；蒜和香菜除外的蔬菜切成片,油锅炸8分熟；牛蛙用姜片绍酒盐腌制20分钟后拍上面粉油锅炸九分熟。",
@@ -281,6 +210,17 @@ export default {
       this.xqContent = item.jianJie;
       this.xqShuoming = item.shuoMing;
       this.xqImg = item.img;
+      this.xqAddCart = item;
+    },
+    addToShopCar(item) {
+      this.$store.commit("addCart", item);
+      console.log(this.$store.state.cart);
+      this.$toast(item.name + "加入购物车");
+    },
+    addShopCar() {
+      this.$store.commit("addCart", this.xqAddCart);
+      this.xiangQingShow = false;
+      this.$toast(this.xqAddCart.name + "加入购物车");
     },
   },
 };

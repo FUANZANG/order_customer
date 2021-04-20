@@ -25,24 +25,13 @@ export default {
   data() {
     return {
       isKon: false,
-      caiList: [
-        {
-          id: 1,
-          img: "/img/laziji.465cab2b.png",
-          name: "干煸牛蛙",
-          ingredients: "干辣椒 鸡腿肉",
-          sales: "6",
-          price: "38.00",
-          jianJie: "这是一个干煸牛蛙 主要配料是干辣椒 青蛙头",
-          shuoMing:
-            "牛蛙去皮去内脏剪去指甲,一定要去除背上的中骨,剪成块状；蒜和香菜除外的蔬菜切成片,油锅炸8分熟；牛蛙用姜片绍酒盐腌制20分钟后拍上面粉油锅炸九分熟。",
-        },
-      ],
+      caiList: [],
     };
   },
   created() {
     if (this.caiList.length !== 0) {
       this.isKon = true;
+      // this.caiList =
     } else {
       this.isKon = false;
     }

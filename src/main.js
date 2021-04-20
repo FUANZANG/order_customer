@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store'
 
 Vue.config.productionTip = false;
 
 // 引入vant组件
-import { Swipe, SwipeItem, Sidebar, SidebarItem, ActionSheet, Button, SwipeCell, Card, Stepper, Checkbox, CheckboxGroup, Dialog } from 'vant';
+import { Swipe, SwipeItem, Sidebar, SidebarItem, ActionSheet, Button, SwipeCell, Card, Stepper, Checkbox, CheckboxGroup, Dialog, Toast } from 'vant';
 
 // 引入rem
 import rem from 'assets/js/public'
@@ -23,10 +24,12 @@ Vue.use(Stepper);
 Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
 Vue.use(Dialog);
+Vue.use(Toast);
 
 // Vue.prototype.$aaa = "你好你好你好你好";
 
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')

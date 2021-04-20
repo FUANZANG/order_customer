@@ -53,7 +53,9 @@ strong {
   margin-bottom: 0.3rem;
 }
 .caiLeft img {
+  width: 2.8rem;
   height: 2.5rem;
+  border-radius: .2rem;
   position: absolute;
 }
 .caiCenter {
@@ -110,7 +112,9 @@ strong {
 
 /* 点击详情页 */
 .xImg img {
+  width: 2.8rem;
   height: 2.5rem;
+  border-radius: .2rem;
   position: absolute;
   left: 0.5rem;
   top: 0.5rem;
@@ -131,8 +135,9 @@ strong {
   top:1.5rem
 }
 .xPrice i{
-font-size: .4rem;
-font-weight: 700;
+  color: firebrick;
+  font-size: .4rem;
+  font-weight: 700;
 }
 .xSales{
   font-size: .3rem;
