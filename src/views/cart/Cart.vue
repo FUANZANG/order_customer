@@ -28,7 +28,7 @@
         </template>
         <div class="adds">
           <van-stepper
-            v-model="item.count"
+            v-model="item.num"
             theme="round"
             button-size="22"
             disable-input

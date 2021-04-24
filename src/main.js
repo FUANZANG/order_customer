@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import axios from 'axios'
 
 Vue.config.productionTip = false;
 
@@ -26,10 +27,19 @@ Vue.use(CheckboxGroup);
 Vue.use(Dialog);
 Vue.use(Toast);
 
-// Vue.prototype.$aaa = "你好你好你好你好";
-
 new Vue({
   render: h => h(App),
   router,
   store
 }).$mount('#app')
+
+// 封装request模块 
+// import { request } from "./network/request"
+
+// request({
+//   url: '/?c=type&a=index'
+// }).then(res => {
+//   console.log(res.data);
+// }).catch(err => {
+//   console.log(err);
+// })

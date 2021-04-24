@@ -13,7 +13,7 @@ export default {
     path: String,
     activeStyle: {
       type: String,
-      default: "red",
+      default: "#3293ba",
     },
   },
   data() {

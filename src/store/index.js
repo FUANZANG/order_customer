@@ -13,13 +13,13 @@ const store = new Vuex.Store({
       var flag = false
       state.cart.some(item => {
         if (item.id === goodsInfo.id) {
-          item.count += 1
+          item.num += 1
           flag = true
           return true
         }
       })
       if (!flag) {
-        goodsInfo.count = 1
+        goodsInfo.num = 1
         goodsInfo.checked = true
         state.cart.push(goodsInfo)
       }
@@ -30,7 +30,7 @@ const store = new Vuex.Store({
       // console.log(id);
       state.cart.some(item => {
         if (item.id === id) {
-          item.count++
+          item.num++
         }
       })
       this.commit('totalPrice')
@@ -38,7 +38,7 @@ const store = new Vuex.Store({
     countCre(state, id) {
       state.cart.some(item => {
         if (item.id === id) {
-          item.count--
+          item.num--
         }
       })
       this.commit('totalPrice')
@@ -64,7 +64,7 @@ const store = new Vuex.Store({
       let totalPrice = 0.00;
       state.cart.some((item) => {
         if (item.checked == true) {
-          totalPrice += item.count * item.price
+          totalPrice += item.num * item.price
         }
       })
       state.price = totalPrice + '.00'
@@ -98,7 +98,6 @@ const store = new Vuex.Store({
     //       totalPrice += item.count * item.price
     //     }
     //   })
-
     //   return state.price = totalPrice + '.00'
     // }
     // totalPrice: state => {

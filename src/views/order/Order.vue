@@ -4,11 +4,11 @@
       <span>订单详情</span>
     </div>
     <div v-if="isKon">
-      <div class="xCart" v-for="(item, index) in caiList" :key="index">
+      <div class="xCart" v-for="(item, index) in cartLis" :key="index">
         <img :src="item.img" alt="" />
         <div class="xcName">{{ item.name }}</div>
-        <div class="xcIng">{{ item.ingredients }}</div>
-        <div class="xNum">数量：{{ item.sales }}</div>
+        <div class="xcIng">{{ item.explain }}</div>
+        <div class="xNum">数量：{{ item.num }}</div>
         <div class="xcPrice">￥{{ item.price }}</div>
       </div>
     </div>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { request } from "network/request";
 export default {
   name: "Order",
   data() {
@@ -28,10 +29,17 @@ export default {
       caiList: [],
     };
   },
+  methods: {},
   created() {
     if (this.caiList.length !== 0) {
       this.isKon = true;
-      // this.caiList =
+      request({
+        url: "/?c=order&a=index",
+        method: "get",
+        params: {
+          desk_id: 1,
+        },
+      });
     } else {
       this.isKon = false;
     }

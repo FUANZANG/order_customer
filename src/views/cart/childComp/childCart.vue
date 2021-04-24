@@ -8,8 +8,8 @@
       <div class="xCart" v-for="(item, index) in caiList" :key="index">
         <img :src="item.img" alt="" />
         <div class="xcName">{{ item.name }}</div>
-        <div class="xcIng">{{ item.ingredients }}</div>
-        <div class="xNum">数量：{{ item.count }}</div>
+        <div class="xcIng">{{ item.explain }}</div>
+        <div class="xNum">数量：{{ item.num }}</div>
         <div class="xcPrice">￥{{ item.price }}</div>
       </div>
     </div>
@@ -23,12 +23,9 @@
 
 <script>
 import { Dialog } from "vant";
+import { request } from "network/request";
 export default {
   name: "childCart",
-
-  // mounted() {
-  //   console.log(this.$aaa);
-  // },
   data() {
     return {
       caiList: [],
@@ -38,20 +35,8 @@ export default {
     this.caiList = this.$store.state.cart.filter((item) => {
       return item.checked;
     });
+    console.log(this.caiList);
   },
-  // 生命周期函数
-  // beforeCreate() {},
-  // created() {},
-  // beforeMount() {},
-  // mounted() {},
-  // beforeUpdate() {},
-  // updated() {},
-  // beforeDestroy() {},
-  // destroyed() {},
-  // // 如果加了keep-alive 多两个函数
-  // activated() {},
-  // deactivated() {},
-
   methods: {
     backClick() {
       this.$router.go(-1);
@@ -59,7 +44,26 @@ export default {
     isKan() {
       this.$store.commit("cleanCheck");
       // console.warn(this.$store.state.cart);
-
+      request({
+        url: "/?c=order&a=create",
+        method: "post",
+        data: {
+          // desk_id: "1",
+          foods: JSON.stringify(
+            this.caiList.map((item) => {
+              item.food_id = item.id;
+              return item;
+            })
+          ),
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          this.cartList = res.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       Dialog.confirm({
         title: "订单已提交",
         message: "是否查看订单",
@@ -75,6 +79,18 @@ export default {
     },
   },
 };
+// 生命周期函数
+// beforeCreate() {},
+// created() {},
+// beforeMount() {},
+// mounted() {},
+// beforeUpdate() {},
+// updated() {},
+// beforeDestroy() {},
+// destroyed() {},
+// // 如果加了keep-alive 多两个函数
+// activated() {},
+// deactivated() {},
 </script>
 
 <style>
