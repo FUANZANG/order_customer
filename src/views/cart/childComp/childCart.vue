@@ -48,7 +48,7 @@ export default {
         url: "/?c=order&a=create",
         method: "post",
         data: {
-          // desk_id: "1",
+          desk_id: "1",
           foods: JSON.stringify(
             this.caiList.map((item) => {
               item.food_id = item.id;
@@ -59,22 +59,25 @@ export default {
       })
         .then((res) => {
           console.log(res);
-          this.cartList = res.data.data;
+          if (res.data.error == 0) {
+            Dialog.confirm({
+              title: "订单已提交",
+              message: "是否查看订单",
+            })
+              .then(() => {
+                this.$router.replace("/Order");
+                this.$store.state.price = "0.00";
+              })
+              .catch(() => {
+                this.$router.replace("/Cart");
+                this.$store.state.price = "0.00";
+              });
+          } else {
+            this.$toast("网络不佳，当前订单未提交，请稍后再试！");
+          }
         })
         .catch((err) => {
           console.log(err);
-        });
-      Dialog.confirm({
-        title: "订单已提交",
-        message: "是否查看订单",
-      })
-        .then(() => {
-          this.$router.replace("/Order");
-          this.$store.state.price = "0.00";
-        })
-        .catch(() => {
-          this.$router.replace("/Cart");
-          this.$store.state.price = "0.00";
         });
     },
   },
