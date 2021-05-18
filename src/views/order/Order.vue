@@ -4,7 +4,7 @@
       <span>订单详情</span>
     </div>
     <div v-if="isKon">
-      <div class="xCart" v-for="(item, index) in caiList" :key="index">
+      <div class="xCart" v-for="(item, index) in formList" :key="index">
         <img :src="item.img" alt="" />
         <div class="xcName">{{ item.name }}</div>
         <!-- <div class="xcIng">{{ item.explain }}</div> -->
@@ -28,6 +28,15 @@ export default {
       isKon: false,
       caiList: [],
     };
+  },
+  computed: {
+    formList: function () {
+      return this.caiList.filter(function (item) {
+        if (item.num != 0) {
+          return item;
+        }
+      });
+    },
   },
   methods: {
     caiLis() {
