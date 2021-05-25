@@ -1,0 +1,19 @@
+.ad{
+  width: 12rem;
+  height: 30rem;
+  background:#ccc url(~assets/img/ad.jpg) no-repeat;
+  position: fixed;
+  z-index: 9999;
+  overflow: hidden;
+}
+.jump{
+  position: absolute;
+  right: 1rem;
+  top: .8rem;
+  font-size: .6rem;
+  background-color: rgba(0,0,0,0.3);
+  color: #fff;
+  padding: .2rem .5rem;
+  border: .1px solid ;
+  border-radius: .7rem;
+}

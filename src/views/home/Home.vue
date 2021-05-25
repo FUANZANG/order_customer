@@ -1,5 +1,9 @@
 <template>
   <div class="well">
+    <!-- 开屏广告 -->
+    <div class="ad" v-show="isShow" @click="goTo">
+      <span class="jump" @click.stop="jump">跳过 {{ timer }}</span>
+    </div>
     <!-- 首页标题 -->
     <strong>欢迎点餐</strong>
     <!-- 轮播图 -->
@@ -92,9 +96,27 @@ export default {
       leftList: [],
       rightList: [],
       lunBt: [],
+      timer: 5,
+      Timer: null,
+      isShow: true,
     };
   },
   methods: {
+    jump() {
+      this.isShow = false;
+    },
+    adShow() {
+      this.Timer = setInterval(() => {
+        this.timer--;
+        if (this.timer == 0) {
+          this.isShow = false;
+          clearInterval(this.Timer);
+        }
+      }, 1000);
+    },
+    goTo() {
+      window.open("https://www.baidu.com", "_blank");
+    },
     change(item) {
       this.rightLis(item.id);
     },
@@ -165,9 +187,13 @@ export default {
     this.leftLis();
     this.rightLis(1);
   },
+  mounted() {
+    this.adShow();
+  },
 };
 </script>
 
 <style scoped>
 @import "~assets/css/home.css";
+@import url("~assets/css/ad.css");
 </style>
