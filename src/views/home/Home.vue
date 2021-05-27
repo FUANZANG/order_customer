@@ -2,7 +2,7 @@
   <div class="well">
     <!-- 开屏广告 -->
     <div class="ad" v-show="isShow" @click="goTo">
-      <span class="jump" @click.stop="jump">跳过 {{ timer }}</span>
+      <button class="jump" @click.stop="jump()">跳过 {{ timer }}</button>
     </div>
     <!-- 首页标题 -->
     <strong>欢迎点餐</strong>
@@ -99,17 +99,35 @@ export default {
       timer: 5,
       Timer: null,
       isShow: true,
+      date1: 0,
+      date2: 0,
     };
   },
   methods: {
+    // 开屏推送
+    // clickJump() {
+    // if (typeof Storage !== "undefined") {
+    // } else {
+    //   alert("浏览器不支持Web Storage");
+    // }
+    // },
+    getDates() {
+      this.dates = new Date().getDate();
+    },
     jump() {
       this.isShow = false;
+      this.getDates();
+      console.log(this.dates);
+      localStorage.setItem("dates", this.dates);
     },
     adShow() {
       this.Timer = setInterval(() => {
         this.timer--;
         if (this.timer == 0) {
           this.isShow = false;
+          this.getDates();
+          console.log(this.dates);
+          localStorage.setItem("dates", this.dates);
           clearInterval(this.Timer);
         }
       }, 1000);
@@ -188,6 +206,18 @@ export default {
     this.rightLis(1);
   },
   mounted() {
+    this.date1 = new Date().getDate();
+    this.date3 = this.date1.toString();
+    this.date2 = localStorage.getItem("dates");
+    console.log(this.date1);
+    console.log(this.date2);
+    if (this.date2 == this.date3) {
+      this.isShow = false;
+      console.log(1111);
+    } else {
+      this.isShow = true;
+      console.log(2222);
+    }
     this.adShow();
   },
 };
