@@ -1,7 +1,7 @@
 .ad{
   width: 12rem;
   height: 30rem;
-  background:#ccc url(~assets/img/ad.jpg) no-repeat;
+  background:#ccc url(~assets/img/ad.jpeg) no-repeat 100%;
   position: fixed;
   z-index: 9999;
   overflow: hidden;
